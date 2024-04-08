@@ -19,7 +19,7 @@ const conectionToDB = mysql.createConnection({
 
 //POST
 app.post("/zoo", (req, res) => {
-  const sqlQuery = `INSERT INTO zoo_museum(name,type,weight,live_in_zoo) values(?,?,?,?)`;
+  const sqlQuery = `INSERT INTO animals(name,type,weight,live_in_zoo) values(?,?,?,?)`;
   conectionToDB.query(
     sqlQuery,
     [req.body.name, req.body.type, req.body.weight, req.body.live_in_zoo],

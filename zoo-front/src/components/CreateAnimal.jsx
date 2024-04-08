@@ -1,22 +1,23 @@
-import React from 'react'
-import { useState } from 'react'
+import React from "react";
+import { useState } from "react";
 export const CreateAnimal = ({ setCreate }) => {
-  const [name, setName] = useState('')
-  const [type, setType] = useState('')
-  const [weight, setWeight] = useState('')
-  const [livesinzoo, setLivesinzoo] = useState(0)
+  const [name, setName] = useState("");
+  const [type, setType] = useState("");
+  const [weight, setWeight] = useState("");
+  const [livesinzoo, setLivesinzoo] = useState(0);
 
   const handleFormSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    setCreate({ name, type, weight, livesinzoo })
-    console.log(name, type, weight, livesinzoo)
+    setCreate({ name, type, weight, livesinzoo });
 
-    setName('')
-    setType('')
-    setWeight('')
-    setLivesinzoo(0)
-  }
+    console.log(name, type, weight, livesinzoo);
+
+    setName("");
+    setType("");
+    setWeight("");
+    setLivesinzoo(0);
+  };
   return (
     <div>
       <h1>Create animal record</h1>
@@ -47,11 +48,11 @@ export const CreateAnimal = ({ setCreate }) => {
         <input
           type="checkbox"
           checked={livesinzoo}
-          onChange={() => setLivesinzoo((doLive) => (doLive ? 0 : 1))}
+          onChange={() => setLivesinzoo((prevValue) => (prevValue ? 0 : 1))}
         />
         <br />
         <button type="submit">Create</button>
       </form>
     </div>
-  )
-}
+  );
+};
