@@ -1,25 +1,27 @@
 import React from 'react'
 import { useState } from 'react'
-export const CreateAnimal = () => {
+export const CreateAnimal = ({ setCreate }) => {
   const [name, setName] = useState('')
   const [type, setType] = useState('')
   const [weight, setWeight] = useState('')
   const [livesinzoo, setLivesinzoo] = useState(0)
 
   const handleFormSubmit = (e) => {
-    e.preventDefoult()
+    e.preventDefault()
+
+    setCreate({ name, type, weight, livesinzoo })
     console.log(name, type, weight, livesinzoo)
 
     setName('')
     setType('')
     setWeight('')
-    setLivesinzoo('')
+    setLivesinzoo(0)
   }
   return (
     <div>
       <h1>Create animal record</h1>
 
-      <form>
+      <form onSubmit={handleFormSubmit}>
         <label>Animal name</label>
         <input
           type="text"
@@ -48,7 +50,7 @@ export const CreateAnimal = () => {
           onChange={() => setLivesinzoo((doLive) => (doLive ? 0 : 1))}
         />
         <br />
-        <button onClick={handleFormSubmit}>Create</button>
+        <button type="submit">Create</button>
       </form>
     </div>
   )

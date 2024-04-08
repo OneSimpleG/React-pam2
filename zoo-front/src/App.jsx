@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react'
 import AnimalsList from './components/AnimalsList'
 import { CreateAnimal } from './components/CreateAnimal'
+import axios from 'axios'
 
 const animalsList = [
   {
@@ -32,9 +34,21 @@ const animalsList = [
   },
 ]
 function App() {
+  const [create, setCreate] = useState(null)
+  const [updateTime, setUpdateTime] = useState(Date.now())
+
+  useEffect(() => {
+    if (create === null) {
+      return
+    }
+
+    axios
+      .post('http://localhost:3003/zoo', create)
+      .then((res) => setUpdateTime(Date.now()))
+  }, [create])
   return (
     <>
-      <CreateAnimal />
+      <CreateAnimal setCreate={setCreate} />
       <AnimalsList animalsList={animalsList} />
     </>
   )
